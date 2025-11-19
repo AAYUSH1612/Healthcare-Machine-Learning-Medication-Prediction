@@ -4,12 +4,16 @@ import numpy as np
 import joblib
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 # ---- Load Pickle Files ---- #
-model = joblib.load("rf_model.pkl")
-encoders = joblib.load("encoder.pkl")        # dict: {col: LabelEncoder} for features
-scaler = joblib.load("scaler.pkl")          # fitted scaler object
-features = joblib.load("features.pkl")      # list of feature names used in training
+BASE_DIR = os.path.dirname(__file__)
+
+model = joblib.load(os.path.join(BASE_DIR, "rf_model.pkl"))
+encoders = joblib.load(os.path.join(BASE_DIR, "encoder.pkl"))
+scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
+features = joblib.load(os.path.join(BASE_DIR, "features.pkl"))
+
 
 # Manual target mapping
 target_map = {0: 'Antibiotics', 1: 'Aspirin', 2: 'Chemotherapy', 3: 'Insulin', 4: 'Statins'}
